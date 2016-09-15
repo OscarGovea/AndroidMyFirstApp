@@ -1,5 +1,6 @@
 package com.herzen.myfirstapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
+    public final static String EXTRA_MESSAGE = "com.herzen.myfirstapp.MESSAGE";
     Button btnSend;
     EditText message;
 
@@ -28,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void sendMessage(View view){
-        Log.v("Escribir: ", message.getText().toString());
+        Intent intent = new Intent(this,DisplayMessageActivity.class);
+        String messageToSend = message.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE,messageToSend);
+        startActivity(intent);
+        Log.v("Escribir:", messageToSend);
+
     }
 }
